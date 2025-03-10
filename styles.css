@@ -1,0 +1,8 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans'); 
+
+html, body, [class*="css"] {
+    font-family: 'Open+Sans', sans-serif; 
+    font-size: 18px;
+    font-weight: 500;
+    color: #091747;
+}
