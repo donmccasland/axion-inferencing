@@ -1,4 +1,4 @@
-M python:3.12-slim
+FROM python:3.12-slim
 
 EXPOSE 8080
 WORKDIR /app

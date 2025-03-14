@@ -2,14 +2,16 @@ import pprint, time
 import streamlit as st
 from openai import OpenAI
 
-st.title("Inferencing on Google Axion")
+st.title("Inferencing on Google Axion:c4a-standard-16")
 
 # Set OpenAI API key from Streamlit secrets
-client = OpenAI(base_url="http://10.128.0.2:8080/v1", api_key='no-key')
+client = OpenAI(base_url="http://10.128.0.13:11434/v1", api_key='no-key')
+
+st.markdown('<style>' + open('styles.css').read() + '</style>', unsafe_allow_html=True)
 
 #Set a default model
 if "openai_model" not in st.session_state:
-    st.session_state["openai_model"] = "not-used"
+    st.session_state["openai_model"] = "gemma3:4b-highthread"
 
 # Initialize chat history
 if "messages" not in st.session_state:
@@ -38,7 +40,8 @@ if prompt := st.chat_input("What is up?"):
             tokcount = 0
             for chunk in completion_generator:
                 tokcount += 1
-                yield chunk.choices[0].delta.content
+                if len(chunk.choices):
+                    yield chunk.choices[0].delta.content
 
             status.update(
                 label="Done, averaged {:.2f} tokens/second".format(
@@ -67,4 +70,3 @@ if prompt := st.chat_input("What is up?"):
 
     st.session_state.messages.append({"role": "assistant", "content": response})
 
-st.markdown('<style>' + open('styles.css').read() + '</style>', unsafe_allow_html=True)
