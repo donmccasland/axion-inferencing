@@ -2,10 +2,10 @@ import pprint, time
 import streamlit as st
 from openai import OpenAI
 
-st.title("Inferencing on Google Axion:c4a-standard-16")
+st.title("Inferencing with VLLM and Google TPUs")
 
 # Set OpenAI API key from Streamlit secrets
-client = OpenAI(base_url="http://10.128.0.13:11434/v1", api_key='no-key')
+client = OpenAI(base_url="http://35.221.88.13:8000/v1", api_key='no-key')
 
 st.markdown('<style>' + open('styles.css').read() + '</style>', unsafe_allow_html=True)
 
