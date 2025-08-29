@@ -5,13 +5,13 @@ from openai import OpenAI
 st.title("Inferencing with VLLM and Google TPUs")
 
 # Set OpenAI API key from Streamlit secrets
-client = OpenAI(base_url="http://35.221.88.13:8000/v1", api_key='no-key')
+client = OpenAI(base_url="http://35.200.86.219:8000/v1", api_key='no-key')
 
 st.markdown('<style>' + open('styles.css').read() + '</style>', unsafe_allow_html=True)
 
 #Set a default model
 if "openai_model" not in st.session_state:
-    st.session_state["openai_model"] = "gemma3:4b-highthread"
+    st.session_state["openai_model"] = "gemma-3-27b-it"
 
 # Initialize chat history
 if "messages" not in st.session_state:
