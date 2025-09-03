@@ -29,3 +29,15 @@ gcloud container node-pools create $NODE_POOL_NAME \
 gcloud projects add-iam-policy-binding aiinfrasummit-demo \
     --member "principal://iam.googleapis.com/projects/815280284507/locations/global/workloadIdentityPools/aiinfrasummit-demo.svc.id.goog/subject/ns/default/sa/ksa-demo" \
     --role "roles/storage.objectUser"
+
+gcloud projects add-iam-policy-binding aiinfrasummit-demo \
+    --member "principal://iam.googleapis.com/projects/815280284507/locations/global/workloadIdentityPools/aiinfrasummit-demo.svc.id.goog/subject/ns/default/sa/ksa-demo" \
+    --role roles/monitoring.metricWriter
+
+kubectl apply -f https://raw.githubusercontent.com/GoogleCloudPlatform/k8s-stackdriver/master/custom-metrics-stackdriver-adapter/deploy/production/adapter_new_resource_model.yaml
+
+gcloud projects add-iam-policy-binding projects/${PROJECT_ID} \
+    --role roles/monitoring.viewer \
+    --member "principal://iam.googleapis.com/projects/815280284507/locations/global/workloadIdentityPools/aiinfrasummit-demo.svc.id.goog/subject/ns/default/sa/ksa-demo" \
+
+#also add monitoring.viewer to compute SA
