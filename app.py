@@ -9,7 +9,7 @@ from openai import OpenAI
 
 
 # --- Main App ---
-st.title("Inferencing with VLLM and Google TPUs")
+st.title("Inferencing with vLLM and Google TPUs")
 
 
 
@@ -20,7 +20,7 @@ st.markdown('<style>' + open('styles.css').read() + '</style>', unsafe_allow_htm
 
 #Set a default model
 if "openai_model" not in st.session_state:
-    st.session_state["openai_model"] = "gemma-3-27b-it"
+    st.session_state["openai_model"] = "Qwen/Qwen2.5-32B"
 
 # Initialize chat history
 if "messages" not in st.session_state:
